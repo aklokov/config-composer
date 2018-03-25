@@ -26,4 +26,30 @@ describe("basic compose", function (): void {
     expect(result.field4).to.be.equal("start 10 mid 13 end");
     expect(result.field5.field7).to.be.equal(22);
   });
+
+  it("should let context decide replacement", function (): void {
+    // arrange
+    const obj = {
+      field1: 1,
+      field2: 1,
+      field3: 1,
+      field4: 1
+    };
+    const config = {
+      field1: 2,
+      field2: 2,
+      field3: 2,
+      field4: 2
+    };
+    const context = new TestContext(2);
+
+    // act
+    const result = compose(obj, config, context);
+
+    // assert
+    expect(result.field1).to.be.equal(2);
+    expect(result.field2).to.be.equal(2);
+    expect(result.field3).to.be.equal(1);
+    expect(result.field4).to.be.equal(1);
+  });
 });
