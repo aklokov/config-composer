@@ -11,7 +11,7 @@ function isString(value) {
 }
 exports.isString = isString;
 function isUnconditional(value) {
-    return !isConstant(value) && !isString(value) && !Array.isArray(value);
+    return !isConstant(value) && !isString(value);
 }
 exports.isUnconditional = isUnconditional;
 //# sourceMappingURL=typeChecks.js.map

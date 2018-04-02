@@ -11,12 +11,12 @@ export class ObjectComposer implements IComposer {
 }
 
 export class FieldComposer implements IComposer {
-    constructor(private field: string, private value: IComposer, private unconditional: boolean) {
+    constructor(private field: string, private value: IComposer, private conditional: boolean) {
     }
 
     public compose<T>(existing: T, context: IComposerContext): T {
         const val = existing[this.field];
-        if (val === null || val === undefined || this.unconditional) {
+        if (val === null || val === undefined || !this.conditional) {
             existing[this.field] = this.value.compose(val, context);
         } else {
             existing[this.field] = context.getUpdatedValue(val, () => this.value.compose(val, context));
