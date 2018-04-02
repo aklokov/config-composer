@@ -24,6 +24,11 @@ export class MethodCallProducer implements IValueProducer {
   constructor(private method: string, private parameters: any[]) { }
 
   public produceValue(context: IComposerContext): any {
+    if (!context[this.method]) {
+      console.error(`context is supposed to have method ${this.method}`);
+      return null;
+    }
+
     return context[this.method](...this.parameters);
   }
 }

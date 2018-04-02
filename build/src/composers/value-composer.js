@@ -28,6 +28,10 @@ class MethodCallProducer {
         this.parameters = parameters;
     }
     produceValue(context) {
+        if (!context[this.method]) {
+            console.error(`context is supposed to have method ${this.method}`);
+            return null;
+        }
         return context[this.method](...this.parameters);
     }
 }
