@@ -1,6 +1,6 @@
 {
   "name": "@vlr/config-composer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "use configuration object as a template to create working object",
   "files": [
     "src",
