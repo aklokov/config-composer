@@ -28,6 +28,6 @@ function createObjectFieldComposers(config) {
 }
 function createFieldComposer(config, field) {
     const fieldVal = objectMap_1.get(config, field);
-    return new object_composer_1.FieldComposer(field, createComposer(fieldVal), typeChecks_1.isUnconditional(fieldVal));
+    return new object_composer_1.FieldComposer(field, createComposer(fieldVal), typeChecks_1.isConditional(fieldVal));
 }
 //# sourceMappingURL=createComposer.js.map

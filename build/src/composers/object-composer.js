@@ -12,14 +12,14 @@ class ObjectComposer {
 }
 exports.ObjectComposer = ObjectComposer;
 class FieldComposer {
-    constructor(field, value, unconditional) {
+    constructor(field, value, conditional) {
         this.field = field;
         this.value = value;
-        this.unconditional = unconditional;
+        this.conditional = conditional;
     }
     compose(existing, context) {
         const val = existing[this.field];
-        if (val === null || val === undefined || this.unconditional) {
+        if (val === null || val === undefined || !this.conditional) {
             existing[this.field] = this.value.compose(val, context);
         }
         else {

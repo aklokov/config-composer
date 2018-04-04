@@ -1,5 +1,5 @@
 export function createParameters(src: string): any[] {
-  const split = src.replace(/\"/g, "\"").split(",");
+  const split = src.replace(/\"/g, "\"").split(",").map(item => item.trim());
   const normalized = normalizeParameters(split);
   return normalized.map(parm => createParameter(parm));
 }
