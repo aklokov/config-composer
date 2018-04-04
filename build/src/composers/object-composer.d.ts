@@ -7,7 +7,7 @@ export declare class ObjectComposer implements IComposer {
 export declare class FieldComposer implements IComposer {
     private field;
     private value;
-    private unconditional;
-    constructor(field: string, value: IComposer, unconditional: boolean);
+    private conditional;
+    constructor(field: string, value: IComposer, conditional: boolean);
     compose<T>(existing: T, context: IComposerContext): T;
 }

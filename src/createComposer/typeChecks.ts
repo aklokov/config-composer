@@ -8,6 +8,6 @@ export function isString(value: any): boolean {
   return typeof value === "string";
 }
 
-export function isUnconditional(value: any): boolean {
-  return !isConstant(value) && !isString(value) && !Array.isArray(value);
+export function isConditional(value: any): boolean {
+  return isConstant(value) || isString(value);
 }

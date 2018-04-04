@@ -1,4 +1,4 @@
-import { isConstant, isString, isUnconditional } from "./typeChecks";
+import { isConstant, isString, isConditional } from "./typeChecks";
 import { ConstantComposer } from "../composers/constant-composer";
 import { ArrayComposer } from "../composers/array-composer";
 import { ValueComposer } from "../composers/value-composer";
@@ -32,7 +32,7 @@ function createObjectFieldComposers(config: IMap<any>): IComposer[] {
 
 function createFieldComposer(config: IMap<any>, field: string): IComposer {
     const fieldVal = get(config, field);
-    return new FieldComposer(field, createComposer(fieldVal), isUnconditional(fieldVal));
+    return new FieldComposer(field, createComposer(fieldVal), isConditional(fieldVal));
 }
 
 

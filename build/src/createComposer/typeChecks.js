@@ -10,8 +10,8 @@ function isString(value) {
     return typeof value === "string";
 }
 exports.isString = isString;
-function isUnconditional(value) {
-    return !isConstant(value) && !isString(value) && !Array.isArray(value);
+function isConditional(value) {
+    return isConstant(value) || isString(value);
 }
-exports.isUnconditional = isUnconditional;
+exports.isConditional = isConditional;
 //# sourceMappingURL=typeChecks.js.map
