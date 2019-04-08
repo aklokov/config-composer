@@ -25,7 +25,7 @@ function createProducersFromString(src) {
     return result;
 }
 exports.createProducersFromString = createProducersFromString;
-const partsRegex = /([^\{\(]*)\(([^\)]*)\)/;
+const partsRegex = /([^\{\(]*)\((.*)\)/;
 function createFunctionProducer(src) {
     const match = partsRegex.exec(src);
     if (!match) {

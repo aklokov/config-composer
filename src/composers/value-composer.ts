@@ -21,7 +21,9 @@ export class StringProducer implements IValueProducer {
 }
 
 export class MethodCallProducer implements IValueProducer {
-  constructor(private method: string, private parameters: any[]) { }
+  constructor(private method: string, private parameters: any[]) {
+    this.method = method.trim();
+  }
 
   public produceValue(context: IComposerContext): any {
     if (!context[this.method]) {
@@ -29,7 +31,9 @@ export class MethodCallProducer implements IValueProducer {
       return null;
     }
 
-    return context[this.method](...this.parameters);
+    var params = this.parameters.map(val => val instanceof ValueComposer ? val.compose(null, context) : val);
+
+    return context[this.method](...params);
   }
 }
 

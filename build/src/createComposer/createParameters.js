@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const createComposer_1 = require("./createComposer");
 function createParameters(src) {
     const split = src.replace(/\"/g, "\"").split(",").map(item => item.trim());
     const normalized = normalizeParameters(split);
@@ -10,6 +11,9 @@ function createParameter(src) {
     if (src.startsWith("'")) {
         return src.substr(1, src.length - 2);
     }
+    if (Number.isInteger(+src)) {
+        return +src;
+    }
     switch (src) {
         case "true":
             return true;
@@ -18,7 +22,7 @@ function createParameter(src) {
         case "null":
             return null;
         default:
-            return +src;
+            return createComposer_1.createComposer("${" + src + "}");
     }
 }
 function normalizeParameters(split) {

@@ -1,3 +1,5 @@
+import { createComposer } from "./createComposer";
+
 export function createParameters(src: string): any[] {
   const split = src.replace(/\"/g, "\"").split(",").map(item => item.trim());
   const normalized = normalizeParameters(split);
@@ -8,6 +10,9 @@ function createParameter(src: string): any {
   if (src.startsWith("'")) {
     return src.substr(1, src.length - 2);
   }
+  if (Number.isInteger(+src)) {
+    return +src;
+  }
   switch (src) {
     case "true":
       return true;
@@ -16,7 +21,7 @@ function createParameter(src: string): any {
     case "null":
       return null;
     default:
-      return +src;
+      return createComposer("${" + src + "}");
   }
 }
 

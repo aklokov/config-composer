@@ -26,13 +26,15 @@ class MethodCallProducer {
     constructor(method, parameters) {
         this.method = method;
         this.parameters = parameters;
+        this.method = method.trim();
     }
     produceValue(context) {
         if (!context[this.method]) {
             console.error(`context is supposed to have method ${this.method}`);
             return null;
         }
-        return context[this.method](...this.parameters);
+        var params = this.parameters.map(val => val instanceof ValueComposer ? val.compose(null, context) : val);
+        return context[this.method](...params);
     }
 }
 exports.MethodCallProducer = MethodCallProducer;

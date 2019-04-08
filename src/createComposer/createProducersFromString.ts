@@ -27,7 +27,7 @@ export function createProducersFromString(src: string): IValueProducer[] {
   return result;
 }
 
-const partsRegex = /([^\{\(]*)\(([^\)]*)\)/;
+const partsRegex = /([^\{\(]*)\((.*)\)/;
 
 function createFunctionProducer(src: string): IValueProducer {
   const match = partsRegex.exec(src);
