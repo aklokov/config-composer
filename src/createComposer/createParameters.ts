@@ -1,7 +1,24 @@
 import { createComposer } from "./createComposer";
 
 export function createParameters(src: string): any[] {
-  const split = src.replace(/\"/g, "\"").split(",").map(item => item.trim());
+  let split = src.replace(/\"/g, "\"").split(",");
+
+  let workingCopy = [],
+     result = [],
+     open = 0,
+     close = 0;
+
+  split.reverse().forEach( a => {
+    open += occurrences(a, "(");
+    close += occurrences(a, ")");
+    workingCopy.push(a);
+    if ( open === close ) {
+      result.push(workingCopy.reverse().join());
+      workingCopy = [];
+    }
+  });
+  split = result.reverse().map(item => item.trim());
+
   const normalized = normalizeParameters(split);
   return normalized.map(parm => createParameter(parm));
 }
@@ -38,4 +55,32 @@ function normalizeParameters(split: string[]): string[] {
   }
 
   return result;
+}
+
+/** Function that count occurrences of a substring in a string;
+ * @param {String} string               The string
+ * @param {String} subString            The sub string to search for
+ */
+function occurrences(source: string, subString: string): number {
+
+  source += "";
+  subString += "";
+  if (subString.length <= 0) {
+    return (source.length + 1);
+  }
+
+  var n = 0,
+      pos = 0,
+      step = subString.length;
+
+  while (true) {
+      pos = source.indexOf(subString, pos);
+      if (pos >= 0) {
+          ++n;
+          pos += step;
+      } else {
+        break;
+      }
+  }
+  return n;
 }

@@ -14,6 +14,7 @@ describe("basic compose", function (): void {
         field7: "${getNumber('22')}"
       },
       field6: "${ getNumber( getString( getNumber( '11' ) ) )} end",
+      field10: "${getFirst('a',getSecond('1', getNumber('2')))} end",
     };
     const context = new TestContext(10);
 
@@ -27,6 +28,8 @@ describe("basic compose", function (): void {
     expect(result.field4).to.be.equal("start 10 mid 13 end");
     expect(result.field5.field7).to.be.equal(22);
     expect(result.field6).to.be.equal("11 end");
+    expect(result.field10).to.be.equal("a end");
+
   });
 
   it("should let context decide replacement", function (): void {
