@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const array_tools_1 = require("@vlr/array-tools");
 const createParameters_1 = require("./createParameters");
 const value_composer_1 = require("../composers/value-composer");
-const fullRegex = /\$\{.*?\)\}/g;
+const fullRegex = /[\$\#]\{.*?\)\}/g;
 function createProducersFromString(src) {
     const matches = array_tools_1.regexToArray(fullRegex, src);
     const result = [];

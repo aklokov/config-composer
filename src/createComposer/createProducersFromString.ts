@@ -3,7 +3,7 @@ import { regexToArray } from "@vlr/array-tools";
 import { createParameters } from "./createParameters";
 import { StringProducer, PropertyGetProducer, MethodCallProducer } from "../composers/value-composer";
 
-const fullRegex = /\$\{.*?\)\}/g;
+const fullRegex = /[\$\#]\{.*?\)\}/g;
 
 export function createProducersFromString(src: string): IValueProducer[] {
   const matches = regexToArray(fullRegex, src);
